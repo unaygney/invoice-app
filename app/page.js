@@ -1,3 +1,15 @@
+import React from "react";
+import Button from "@/components/Button";
+
 export default function Home() {
-  return <div>deneme</div>;
+  return (
+    <>
+      <div>
+        <Button title="New Invoice" variant="primary" />
+      </div>
+      <div>
+        <Button title="Mark as Paid" variant="secondary" />
+      </div>
+    </>
+  );
 }
