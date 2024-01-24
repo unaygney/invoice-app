@@ -38,3 +38,21 @@
 .secondary:hover {
   background-color: #9277ff;
 }
+
+.mini {
+  width: 73px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: #f9fafe;
+  color: #7e88c3;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+}
+
+.mini:hover {
+  background-color: #dfe3fa;
+  color: #7e88c3;
+}

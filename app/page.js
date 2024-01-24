@@ -10,6 +10,9 @@ export default function Home() {
       <div>
         <Button title="Mark as Paid" variant="secondary" />
       </div>
+      <div>
+        <Button title="Edit" variant="mini" />
+      </div>
     </>
   );
 }
