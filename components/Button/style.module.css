@@ -4,6 +4,7 @@
   justify-content: center;
   gap: 16px;
   transition: background-color ease-in 75ms;
+  border-radius: 24px;
 }
 
 .primary {
@@ -11,7 +12,6 @@
   height: 48px;
   color: white;
   background-color: #7c5dfa;
-  border-radius: 24px;
   font-size: 15px;
   font-weight: 700;
   line-height: 15px; /* 100% */
@@ -27,7 +27,6 @@
   height: 48px;
   background-color: #7c5dfa;
   color: white;
-  border-radius: 24px;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -39,7 +38,7 @@
   background-color: #9277ff;
 }
 
-.mini {
+.dark-mini {
   width: 73px;
   height: 48px;
   border-radius: 24px;
@@ -52,7 +51,52 @@
   letter-spacing: -0.25px;
 }
 
-.mini:hover {
+.dark-mini:hover {
   background-color: #dfe3fa;
   color: #7e88c3;
+}
+
+.dark {
+  width: 133px;
+  height: 48px;
+  background-color: #373b53;
+  color: #888eb0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+}
+
+.dark:hover {
+  background-color: #0c0e16;
+}
+
+.danger {
+  width: 89px;
+  height: 48px;
+  background-color: #ec5757;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+}
+
+.danger:hover {
+  background-color: #ff9797;
+}
+
+.primary-long {
+  width: 350px;
+  height: 48px;
+  color: #7e88c3;
+  background-color: #f9fafe;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px; /* 100% */
+  letter-spacing: -0.25px;
+}
+
+.primary-long:hover {
+  background: #dfe3fa;
 }

@@ -1,0 +1,32 @@
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .formLabel {
+    color: #7e88c3;
+    text-align: start;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px; /* 115.385% */
+    letter-spacing: -0.1px;
+  }
+  .formInput {
+    width: 100%;
+    max-width: 240px;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid #dfe3fa;
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    color: #0c0e16;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    caret-color: #7c5dfa;
+  }
+}
