@@ -11,7 +11,7 @@ export default function SideBar() {
     <aside>
       <button
         onClick={handleClick}
-        className="bg-gray-600 dark:bg-red rounded-lg w-40 h-10"
+        className="bg-gray-600 dark:bg-green-500 rounded-lg w-40 h-10"
       >
         change theme{" "}
       </button>
