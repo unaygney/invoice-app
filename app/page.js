@@ -5,5 +5,9 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <div>test</div>;
+  return (
+    <div className="bg-light-bg dark:bg-custom-black-400 flex-1  ">
+      <div></div>
+    </div>
+  );
 }
