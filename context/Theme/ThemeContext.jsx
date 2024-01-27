@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useMemo } from "react";
-
+"use client";
+import { createContext, useContext, useState, useMemo, useEffect } from "react";
 const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
@@ -13,11 +13,16 @@ export const ThemeContextProvider = ({ children }) => {
     [theme]
   );
 
-  if (theme) {
-    document.body.classList.add("dark");
-  } else {
-    document.body.classList.remove("dark");
-  }
+  // is coding run browser?
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (theme) {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+    }
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={contextData}>
