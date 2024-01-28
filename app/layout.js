@@ -10,10 +10,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${mainFont.className} antialiased scroll-smooth flex flex-col lg:flex-row overflow-hidden `}
       >
-        <ThemeContextProvider>
-          <SideBar />
-          {children}
-        </ThemeContextProvider>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
       </body>
     </html>
   );
