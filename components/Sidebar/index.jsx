@@ -23,8 +23,8 @@ export default function SideBar() {
             fill="none"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M8.28804 0L15.5 14.3876L22.712 3.41999e-07C27.64 2.57528 31 7.70752 31 13.6185C31 22.1134 24.0604 28.9999 15.5 28.9999C6.93959 28.9999 0 22.1134 0 13.6185C0 7.70752 3.35998 2.57528 8.28804 0Z"
               fill="white"
             />
