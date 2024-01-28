@@ -10,6 +10,8 @@
 .primary {
   width: 150px;
   height: 48px;
+  justify-content: start;
+  padding-left: 8px;
   color: white;
   background-color: #7c5dfa;
   font-size: 15px;
