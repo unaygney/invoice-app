@@ -31,7 +31,6 @@ export default function LoginForm() {
 
       const userData = await response.json();
       return userData;
-      // Burada alınan userData ile yapılacak işlemleri gerçekleştirebilirsiniz.
     } catch (error) {
       console.error("Error while posting user data:", error);
     }
