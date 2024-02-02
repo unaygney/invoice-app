@@ -5,11 +5,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "@/utils/validation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
+  const router = useRouter();
+  const REDIRECT_TIME = 1000;
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -27,7 +31,6 @@ export default function SignupForm() {
         body: JSON.stringify(data),
       });
       const userData = await response.json();
-      console.log(userData.email);
       if (response.ok) {
         toast.success("User created successfully", {
           position: "top-right",
@@ -37,6 +40,11 @@ export default function SignupForm() {
           pauseOnHover: false,
           draggable: false,
         });
+        reset();
+        //redirect login page in 500ms
+        setTimeout(() => {
+          router.push("/login");
+        }, REDIRECT_TIME);
       } else {
         toast.error(`An error was encountered while creating the user`, {
           position: "top-right",
