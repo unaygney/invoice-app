@@ -30,7 +30,6 @@ export default function SignupForm() {
         },
         body: JSON.stringify(data),
       });
-      const userData = await response.json();
       if (response.ok) {
         toast.success("User created successfully", {
           position: "top-right",
@@ -41,7 +40,6 @@ export default function SignupForm() {
           draggable: false,
         });
         reset();
-        //redirect login page in 500ms
         setTimeout(() => {
           router.push("/login");
         }, REDIRECT_TIME);
