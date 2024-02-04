@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import { loginSchema } from "@/utils/validation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const router = useRouter();
   const REDIRECT_TIME = 1000;
   const {
     register,
@@ -29,6 +31,9 @@ export default function LoginForm() {
       if (response.ok) {
         toast.success("Successfully logged in!");
         reset();
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, REDIRECT_TIME);
       } else {
         toast.error(`Error encountered while logging in`);
       }
