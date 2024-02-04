@@ -1,20 +1,30 @@
 import { NextResponse } from "next/server";
+import { verifyJwtToken } from "./lib/auth";
+import { isAuthPages } from "./utils/isAuthPages";
 
-export function middleware(request) {
+export async function middleware(request) {
+  const { url, nextUrl } = request;
   const allCokies = request.cookies.getAll();
-  const { value } = allCokies[0];
+  const { value } = allCokies[0] ?? { value: null };
 
-  if (!value) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-  if (request.nextUrl.pathname.endsWith("/")) {
-    if (value) {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
+  const hasVerifiedToken = value && (await verifyJwtToken(value));
+  const isAuthPageRequested = isAuthPages(nextUrl.pathname);
+
+  if (isAuthPageRequested) {
+    if (!hasVerifiedToken) {
+      const response = NextResponse.next();
+      return response;
     }
-    return NextResponse.rewrite(new URL("/login", request.url));
+    const response = NextResponse.redirect(new URL("/dashboard", url));
+    return response;
   }
+
+  if (!hasVerifiedToken) {
+    return NextResponse.redirect(new URL("/login", url));
+  }
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard:path*", "/"],
+  matcher: ["/dashboard:path*", "/", "/login"],
 };
