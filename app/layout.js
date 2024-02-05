@@ -1,8 +1,8 @@
 "use client";
-import SideBar from "@/components/Sidebar";
 import "./globals.css";
 import { mainFont } from "@/lib/font";
 import { ThemeContextProvider } from "@/context/Theme/ThemeContext";
+import { AuthContextProvider } from "@/context/Theme/AuthContext";
 
 export default function RootLayout({ children }) {
   return (
@@ -10,7 +10,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${mainFont.className} antialiased scroll-smooth flex flex-col lg:flex-row overflow-hidden `}
       >
-        <ThemeContextProvider>{children}</ThemeContextProvider>
+        <ThemeContextProvider>
+          <AuthContextProvider>{children}</AuthContextProvider>
+        </ThemeContextProvider>
       </body>
     </html>
   );
