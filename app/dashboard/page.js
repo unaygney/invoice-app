@@ -1,7 +1,11 @@
 import React from "react";
 import DashboardContainer from "@/containers/DashboardContainer";
+import { getOrders } from "@/lib/firebase";
+
 function Dashboard() {
-  return <DashboardContainer />;
+  const orders = getOrders();
+
+  return <DashboardContainer orders={orders} />;
 }
 
 export default Dashboard;
