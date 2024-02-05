@@ -6,8 +6,10 @@ import { loginSchema } from "@/utils/validation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import { getUserData } from "@/context/Theme/AuthContext";
 
 export default function LoginForm() {
+  const { setUserData } = getUserData();
   const router = useRouter();
   const REDIRECT_TIME = 1000;
   const {
@@ -30,6 +32,8 @@ export default function LoginForm() {
 
       if (response.ok) {
         toast.success("Successfully logged in!");
+        const userDataResponse = await response.json();
+        setUserData(userDataResponse.user);
         reset();
         setTimeout(() => {
           router.push("/dashboard");
