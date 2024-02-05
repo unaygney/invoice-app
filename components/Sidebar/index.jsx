@@ -1,12 +1,24 @@
 import { useTheme } from "@/context/Theme/ThemeContext";
-import Logo from "@/public/logo.svg";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import avatar from "./images/image-avatar.jpg";
 import MoonImg from "./images/moon.svg";
 import PointImg from "./images/point.svg";
+import { Popconfirm } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+
 export default function SideBar() {
+  const router = useRouter();
   const { theme, setTheme } = useTheme();
+
+  const confirm = (e) => {
+    router.push("/login");
+  };
+
+  const cancel = (e) => {
+    console.log("hayir tiklandi");
+  };
 
   const handleClick = () => {
     setTheme(!theme);
@@ -38,8 +50,26 @@ export default function SideBar() {
             </button>
           </div>
           <div className="flex items-center justify-center w-20 h-full border-l lg:border-t lg:border-l-0 border-[#494E6E] lg:w-full lg:h-20 ">
-            <div className="w-8 h-8  rounded-full overflow-hidden relative">
-              <Image fill src={avatar} alt="avatar" placeholder="blur" />
+            <div className="w-8 h-8  rounded-full  relative">
+              <Popconfirm
+                title="Delete the task"
+                description="Are you sure you want to log out?"
+                icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+                okText="Yes"
+                cancelText="No"
+                onConfirm={confirm}
+                onCancel={cancel}
+              >
+                <button className="w-8 h-8 relative">
+                  <Image
+                    src={avatar}
+                    fill
+                    placeholder="blur"
+                    alt="avatar"
+                    className="rounded-full"
+                  />
+                </button>
+              </Popconfirm>
             </div>
           </div>
         </div>
