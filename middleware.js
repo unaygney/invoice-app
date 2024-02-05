@@ -10,21 +10,18 @@ export async function middleware(request) {
   const hasVerifiedToken = value && (await verifyJwtToken(value));
   const isAuthPageRequested = isAuthPages(nextUrl.pathname);
 
+  // is it a secure page??
   if (isAuthPageRequested) {
+    // is there a secure key?
     if (!hasVerifiedToken) {
-      const response = NextResponse.next();
+      const response = NextResponse.redirect(new URL("/login", url));
       return response;
     }
-    const response = NextResponse.redirect(new URL("/dashboard", url));
+    const response = NextResponse.next();
     return response;
   }
-
-  if (!hasVerifiedToken) {
-    return NextResponse.redirect(new URL("/login", url));
-  }
-  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard:path*", "/", "/login"],
+  matcher: ["/dashboard:path*", "/", "/login", "/signup"],
 };
