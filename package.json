@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "antd": "^5.14.0",
     "clsx": "^2.1.0",
     "firebase": "^10.7.2",
     "jose": "^5.2.1",
