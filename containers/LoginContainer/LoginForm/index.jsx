@@ -33,7 +33,10 @@ export default function LoginForm() {
       if (response.ok) {
         toast.success("Successfully logged in!");
         const userDataResponse = await response.json();
-        setUserData(userDataResponse.user);
+        setUserData({
+          email: userDataResponse.user.email,
+          id: userDataResponse.user.uid,
+        });
         reset();
         setTimeout(() => {
           router.push("/dashboard");
