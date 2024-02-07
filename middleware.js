@@ -10,6 +10,15 @@ export async function middleware(request) {
   const hasVerifiedToken = value && (await verifyJwtToken(value));
   const isAuthPageRequested = isAuthPages(nextUrl.pathname);
 
+  // is path starts "/" ?
+  if (nextUrl.pathname === "/") {
+    if (!hasVerifiedToken) {
+      const response = NextResponse.redirect(new URL("/login", url));
+      return response;
+    }
+    const response = NextResponse.redirect(new URL("/dashboard", url));
+    return response;
+  }
   // is it a secure page??
   if (isAuthPageRequested) {
     // is there a secure key?
