@@ -1,6 +1,7 @@
 import { login } from "@/lib/firebase";
 import { SignJWT } from "jose";
 import { getJwtSecretKey } from "@/lib/auth";
+
 export default async function handler(req, res) {
   const { loginEmail, loginPassword } = req.body;
 
@@ -20,9 +21,8 @@ export default async function handler(req, res) {
       .setIssuedAt()
       .setExpirationTime("10h")
       .sign(getJwtSecretKey());
-    console.log(token);
 
-    res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Secure; Path=/; `);
+    res.setHeader("Set-Cookie", [`token=${token}; HttpOnly; Secure; Path=/;`]);
 
     res.status(200).json({
       success: true,
