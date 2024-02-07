@@ -1,6 +1,4 @@
-"use client";
 import SideBar from "@/components/Sidebar";
-import { ThemeContextProvider } from "@/context/Theme/ThemeContext";
 
 export default function RootLayout({ children }) {
   return (
