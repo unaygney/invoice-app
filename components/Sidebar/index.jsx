@@ -1,16 +1,20 @@
+"use client";
 import { useTheme } from "@/context/Theme/ThemeContext";
-import React, { useState } from "react";
-import Image from "next/image";
-import avatar from "./images/image-avatar.jpg";
+import React from "react";
+
 import MoonImg from "./images/moon.svg";
 import PointImg from "./images/point.svg";
-import { Popconfirm } from "antd";
+import { Popconfirm, Avatar } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
+import { getFirstLetter } from "@/utils/getFirstLetter";
+import { getUserData } from "@/context/Theme/AuthContext";
 
 export default function SideBar() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
+  const { userData } = getUserData();
+  console.log(userData);
 
   const confirm = (e) => {
     router.push("/login");
@@ -61,13 +65,9 @@ export default function SideBar() {
                 onCancel={cancel}
               >
                 <button className="w-8 h-8 relative">
-                  <Image
-                    src={avatar}
-                    fill
-                    placeholder="blur"
-                    alt="avatar"
-                    className="rounded-full"
-                  />
+                  <Avatar style={{ verticalAlign: "middle" }} size="large">
+                    {getFirstLetter("guney")}
+                  </Avatar>
                 </button>
               </Popconfirm>
             </div>
