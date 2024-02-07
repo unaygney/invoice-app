@@ -1,11 +1,16 @@
 import React from "react";
 import DashboardContainer from "@/containers/DashboardContainer";
-import { getOrders } from "@/lib/firebase";
+import { headers } from "next/headers";
 
-function Dashboard() {
-  const orders = getOrders();
+export default async function Dashboard() {
+  const headersList = headers();
+  console.log(headersList);
 
-  return <DashboardContainer orders={orders} />;
+  return <DashboardContainer />;
+  // return (
+  //   <div>
+  //     <h1>Hello</h1>
+  //     <pre>{JSON.stringify(Array.from(headersList.entries()), null, 2)}</pre>
+  //   </div>
+  // );
 }
-
-export default Dashboard;
