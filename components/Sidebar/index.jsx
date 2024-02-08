@@ -1,27 +1,37 @@
 "use client";
 import { useTheme } from "@/context/Theme/ThemeContext";
 import React from "react";
-
 import MoonImg from "./images/moon.svg";
 import PointImg from "./images/point.svg";
 import { Popconfirm, Avatar } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
-import { getFirstLetter } from "@/utils/getFirstLetter";
-import { getUserData } from "@/context/Theme/AuthContext";
+import { getFirstLetter } from "@/utils/helper";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SideBar() {
+  const REDIRECT_TIME = 750;
   const router = useRouter();
   const { theme, setTheme } = useTheme();
-  const { userData } = getUserData();
-  console.log(userData);
 
-  const confirm = (e) => {
-    router.push("/login");
+  const confirm = async (e) => {
+    try {
+      const response = await fetch("/api/signOutUser", { method: "POST" });
+      if (!response.ok) {
+        throw new Error("Error encountered while logging out.");
+      }
+      toast.success("Successfully logged out!");
+      setTimeout(() => {
+        router.push("/login");
+      }, REDIRECT_TIME);
+    } catch (error) {
+      toast.error("There is an error while signing out: ");
+    }
   };
 
   const cancel = (e) => {
-    console.log("hayir tiklandi");
+    console.log("clicked no!");
   };
 
   const handleClick = () => {
@@ -29,7 +39,8 @@ export default function SideBar() {
   };
 
   return (
-    <aside className="w-full h-[72px] bg-[#373b53] lg:w-[103px] lg:h-screen ">
+    <aside className="w-full h-[72px] bg-[#373b53] lg:w-[103px] lg:h-screen relative ">
+      <ToastContainer />
       <div className="flex lg:flex-col w-full h-full justify-between ">
         <div className="bg-purple flex items-center justify-center w-[72px] h-[72px] lg:h-[103px] lg:w-full rounded-r-[20px]  ">
           <svg
@@ -66,7 +77,7 @@ export default function SideBar() {
               >
                 <button className="w-8 h-8 relative">
                   <Avatar style={{ verticalAlign: "middle" }} size="large">
-                    {getFirstLetter("guney")}
+                    {getFirstLetter("User")}
                   </Avatar>
                 </button>
               </Popconfirm>
