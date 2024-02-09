@@ -2,6 +2,7 @@ import { login } from "@/lib/firebase";
 import { SignJWT } from "jose";
 import { getJwtSecretKey } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { uid } from "uid";
 
 export default async function handler(req, res) {
   const { loginEmail, loginPassword } = req.body;
@@ -15,6 +16,7 @@ export default async function handler(req, res) {
     const token = await new SignJWT({
       email: loginEmail,
       role: "user",
+      id: uid(16),
     })
       .setProtectedHeader({
         alg: "HS256",
