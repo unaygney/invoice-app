@@ -1,10 +1,19 @@
 import React from "react";
 import DashboardContainer from "@/containers/DashboardContainer";
+import { verifyJwtToken } from "@/lib/auth";
+import { headers } from "next/headers";
+import { getToken } from "@/utils/helper";
 import { getDataWithUid } from "@/lib/firebase";
+import { notFound } from "next/navigation";
 
 export default async function Dashboard() {
-  const uid = "v3HlQacRvaMUGNAirLC8PXx5LYk1";
-  const data = await getDataWithUid(uid);
-  console.log(data);
-  return <DashboardContainer />;
+  const token = await getToken(headers().get("cookie"));
+  const payload = await verifyJwtToken(token);
+  const data = await getDataWithUid(payload.id);
+
+  if (!data) {
+    notFound();
+  }
+
+  return <DashboardContainer data={data} />;
 }
