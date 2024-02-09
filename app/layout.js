@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${mainFont.className} antialiased scroll-smooth flex flex-col lg:flex-row overflow-hidden `}
+        className={`${mainFont.className} antialiased scroll-smooth flex flex-col lg:flex-row  `}
       >
         <ThemeContextProvider>
           <AuthContextProvider>{children}</AuthContextProvider>
