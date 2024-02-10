@@ -9,11 +9,9 @@ import { notFound } from "next/navigation";
 export default async function Dashboard() {
   const token = await getToken(headers().get("cookie"));
   const payload = await verifyJwtToken(token);
-  const data = await getDataWithUid("5a61a25925cbb65e");
+  const data = await getDataWithUid(payload.id);
+  console.log(payload);
 
-  if (!data) {
-    notFound();
-  }
-
-  return <DashboardContainer data={data} />;
+  // return <DashboardContainer />;
+  return <div>test</div>;
 }
