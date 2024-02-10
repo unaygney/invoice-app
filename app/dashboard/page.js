@@ -10,8 +10,6 @@ export default async function Dashboard() {
   const token = await getToken(headers().get("cookie"));
   const payload = await verifyJwtToken(token);
   const data = await getDataWithUid(payload.id);
-  console.log(payload);
 
-  // return <DashboardContainer />;
-  return <div>test</div>;
+  return <DashboardContainer data={data} />;
 }
