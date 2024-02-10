@@ -7,7 +7,7 @@ function FilterContainer({ dataLength }) {
         <div className="flex flex-col ">
           <h3 className="font-black ">Invoices</h3>
           <p className="text-xs text-[#888eb0]  font-bold">
-            {dataLength ?? undefined} invoices
+            {dataLength === 0 ? "No invoices" : `${dataLength}invoices`}
           </p>
         </div>
 
