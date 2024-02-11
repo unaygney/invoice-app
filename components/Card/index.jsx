@@ -1,10 +1,14 @@
+"use client";
 import clsx from "clsx";
 import React from "react";
-
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 function Card({ data }) {
-  console.log(data);
   return (
-    <div className="px-6 py-[22px] bg-white dark:bg-[#1E2139] rounded-md">
+    <Link
+      href={`/dashboard/${data.id}`}
+      className="px-6 py-[22px] bg-white dark:bg-[#1E2139] rounded-md cursor-pointer hover:border-2 hover:border-purple "
+    >
       <div className="flex flex-col gap-6">
         <div className="flex justify-between">
           <h6>
@@ -59,7 +63,7 @@ function Card({ data }) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
