@@ -3,7 +3,6 @@ import FilterContainer from "./FilterContainer";
 import CardContainer from "./CardContainer";
 
 export default function DashboardContainer({ data }) {
-  console.log("data ", data.invoices);
   const invoices = data.invoices;
   return (
     <main className="bg-light-bg dark:bg-custom-black-400 text-custom-black-400 dark:text-white flex-1 px-6 py-8  ">
