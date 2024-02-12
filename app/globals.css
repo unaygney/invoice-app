@@ -16,6 +16,19 @@ input[data-autocompleted] {
   background-color: transparent !important;
 }
 
+/* to remove scrool bar */
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 @layer components {
   .heading-l {
     font-feature-settings: "clig" off, "liga" off;
