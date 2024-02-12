@@ -2,6 +2,7 @@ import Card from "@/components/Card";
 import React from "react";
 import EmptyImage from "./images/illustration-empty.svg";
 function CardContainer({ data }) {
+  // if is empty
   if (data.length === 0) {
     return (
       <section className="mt-[102px] flex justify-center items-center">

@@ -4,7 +4,6 @@ import { verifyJwtToken } from "@/lib/auth";
 import { headers } from "next/headers";
 import { getToken } from "@/utils/helper";
 import { getDataWithUid } from "@/lib/firebase";
-import { notFound } from "next/navigation";
 
 export default async function Dashboard() {
   const token = await getToken(headers().get("cookie"));
