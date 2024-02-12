@@ -4,7 +4,7 @@ import clsx from "clsx";
 function ViewSection({ data }) {
   console.log(data);
   return (
-    <section className="flex flex-col gap-4 mt-8 overflow-y-scroll">
+    <section className="flex flex-col gap-4 mt-8 overflow-y-scroll scroll-smooth no-scrollbar">
       <div className="w-full h-[91px] rounded-lg flex justify-between items-center bg-white dark:bg-[#1E2139] px-6">
         <h6 className="text text-[#858BB2]">Status</h6>
         <div
@@ -48,7 +48,7 @@ function ViewSection({ data }) {
         </div>
       </div>
       {/* invoices info bar */}
-      <div className="w-full  rounded-lg   bg-white dark:bg-[#1E2139] p-6">
+      <div className="w-full  rounded-lg mb-20  bg-white dark:bg-[#1E2139] p-6  ">
         <div className="w-full h-full">
           <div className="flex flex-col gap-8">
             <div className="">
@@ -98,8 +98,8 @@ function ViewSection({ data }) {
             </div>
           </div>
 
-          <div className="p-6 bg-[#F9FAFE] dark:bg-[#252945] rounded-t-lg">
-            <div>
+          <div className=" bg-[#F9FAFE] dark:bg-[#252945] rounded-t-lg ">
+            <div className="mb-6 p-6">
               {data.items.map((item) => (
                 <div className=" flex justify-between items-center">
                   <div className="flex flex-col gap-2">
@@ -115,9 +115,9 @@ function ViewSection({ data }) {
               ))}
             </div>
 
-            <div>
-              <h3>Grand Total</h3>
-              <h3>£{data.total}</h3>
+            <div className="bg-[#373B53] dark:bg-custom-black-400 rounded-b-lg px-6 py-8 flex items-center  justify-between ">
+              <h3 className="text">Amount Due</h3>
+              <h3 className="heading-m">£ {data.total}</h3>
             </div>
           </div>
         </div>
