@@ -1,9 +1,14 @@
+"use client";
 import React from "react";
 import clsx from "clsx";
-
+import { getUserData } from "@/context/Theme/AuthContext";
+import EditForm from "./EditForm";
 function ViewSection({ data }) {
-  console.log(data);
-  return (
+  const { isEdit } = getUserData();
+  console.log(isEdit);
+  return isEdit ? (
+    <EditForm />
+  ) : (
     <section className="flex flex-col gap-4 mt-8 overflow-y-scroll scroll-smooth no-scrollbar">
       <div className="w-full h-[91px] rounded-lg flex justify-between items-center bg-white dark:bg-[#1E2139] px-6">
         <h6 className="text text-[#858BB2]">Status</h6>
@@ -100,8 +105,8 @@ function ViewSection({ data }) {
 
           <div className=" bg-[#F9FAFE] dark:bg-[#252945] rounded-t-lg ">
             <div className="mb-6 p-6">
-              {data.items.map((item) => (
-                <div className=" flex justify-between items-center">
+              {data.items.map((item, i) => (
+                <div key={i} className=" flex justify-between items-center">
                   <div className="flex flex-col gap-2">
                     <h5 className="heading-s">{item.name}</h5>
                     <p className="body text-[#7E88C3]">
@@ -115,7 +120,7 @@ function ViewSection({ data }) {
               ))}
             </div>
 
-            <div className="bg-[#373B53] dark:bg-custom-black-400 rounded-b-lg px-6 py-8 flex items-center  justify-between ">
+            <div className="bg-[#373B53] dark:bg-custom-black-400 text-white rounded-b-lg px-6 py-8 flex items-center  justify-between ">
               <h3 className="text">Amount Due</h3>
               <h3 className="heading-m">£ {data.total}</h3>
             </div>
