@@ -1,8 +1,8 @@
 "use client";
 import "./globals.css";
 import { mainFont } from "@/lib/font";
-import { ThemeContextProvider } from "@/context/Theme/ThemeContext";
-import { AuthContextProvider } from "@/context/Theme/AuthContext";
+import { ThemeContextProvider } from "@/context/ThemeContext";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 export default function RootLayout({ children }) {
   return (
