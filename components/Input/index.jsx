@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.module.scss";
-
+import clsx from "clsx";
 export default function Input({
   placeholder,
   type,
@@ -9,6 +9,7 @@ export default function Input({
   onChange,
   options,
   label,
+  className,
   ...rest
 }) {
   if (type === "select") {
@@ -34,7 +35,7 @@ export default function Input({
         {label}
       </label>
       <input
-        className={styles.formInput}
+        className={clsx(styles.formInput, className)}
         name={name}
         id={name}
         type={type}
