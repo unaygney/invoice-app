@@ -1,7 +1,9 @@
 .formControl {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 12px;
 
   .formLabel {
     color: #7e88c3;
@@ -14,11 +16,8 @@
   }
   .formInput {
     width: 100%;
-    max-width: 240px;
     height: 48px;
     border-radius: 4px;
-    border: 1px solid #dfe3fa;
-    background-color: #fff;
     padding-left: 20px;
     padding-right: 20px;
     outline: none;
