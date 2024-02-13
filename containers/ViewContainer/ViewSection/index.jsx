@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import clsx from "clsx";
-import { getUserData } from "@/context/Theme/AuthContext";
+import { getUserData } from "@/context/AuthContext";
 import EditForm from "./EditForm";
 function ViewSection({ data }) {
   const { isEdit } = getUserData();
-  console.log(isEdit);
+
   return isEdit ? (
     <EditForm />
   ) : (
