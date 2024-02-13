@@ -6,7 +6,7 @@ import { loginSchema } from "@/utils/validation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { getUserData } from "@/context/Theme/AuthContext";
+import { getUserData } from "@/context/AuthContext";
 
 export default function LoginForm() {
   const { setUserData } = getUserData();
