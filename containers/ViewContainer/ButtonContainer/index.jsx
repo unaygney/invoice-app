@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Button from "@/components/Button";
-import { getUserData } from "@/context/Theme/AuthContext";
+import { getUserData } from "@/context/AuthContext";
 
 function ButtonContainer() {
   const { setEdit, isEdit } = getUserData();
@@ -13,7 +13,10 @@ function ButtonContainer() {
     <div className="fixed bottom-0 left-0 right-0 h-[91px] bg-white dark:bg-[#1E2139]">
       <div className="w-full h-full flex items-center justify-center gap-2 px-6">
         {isEdit ? (
-          "deneme"
+          <div className="w-full h-full flex items-center justify-end gap-2 px-6">
+            <Button variant="dark-mini" title="Cancel" />
+            <Button variant="secondary" title="Save Changes" />
+          </div>
         ) : (
           <div className="w-full h-full flex items-center justify-center gap-2 px-6">
             <Button
