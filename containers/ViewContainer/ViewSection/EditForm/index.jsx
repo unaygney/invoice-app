@@ -1,7 +1,9 @@
 import React from "react";
+import { INPUTS } from "../constant";
 
 function EditForm() {
-  return <div>edit formm</div>;
+  console.log(INPUTS);
+  return <div></div>;
 }
 
 export default EditForm;
