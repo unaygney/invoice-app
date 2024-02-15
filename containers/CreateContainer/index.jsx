@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import CreateForm from "./CreateForm";
 import ArrowImg from "@/public/icon-arrow-left.svg";
-import ButtonContainer from "./ButtonContainer";
+
 function CreateContainer() {
   return (
     <main className="bg-light-bg dark:bg-custom-black-400 text-custom-black-400 dark:text-white flex-1 px-6 py-8  ">
@@ -14,7 +14,6 @@ function CreateContainer() {
           <h2>New Invoice</h2>
         </div>
         <CreateForm />
-        <ButtonContainer />
       </div>
     </main>
   );
