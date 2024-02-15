@@ -34,8 +34,8 @@ export const INPUTS = [
       },
       {
         label: "Clients's Email",
-        name: "city",
-        placeholder: "Enter city",
+        name: "clientEmail",
+        placeholder: "Enter Client Email",
         type: "email",
       },
       {
@@ -46,7 +46,7 @@ export const INPUTS = [
       },
       {
         label: "City",
-        name: "clientCountry",
+        name: "clientCity",
         placeholder: "Enter City ",
         type: "text",
       },
@@ -65,6 +65,7 @@ export const INPUTS = [
     ],
   },
   {
+    areaName: "Details",
     fields: [
       {
         label: "Invoice Date",
@@ -74,15 +75,44 @@ export const INPUTS = [
       },
       {
         label: "Payment Terms",
-        name: "invoiceDate",
-        placeholder: "Enter invoice date",
-        type: "date",
+        name: "paymentTerms",
+        placeholder: "Enter payment terms",
+        type: "number",
       },
       {
         label: "Project / Description",
         name: "description",
         placeholder: "Enter Description date",
         type: "text",
+      },
+    ],
+  },
+  {
+    areaName: "Item List",
+    fields: [
+      {
+        label: "Item Name",
+        name: "name",
+        placeholder: "Enter Item Name",
+        type: "text",
+      },
+      {
+        label: "Quantity",
+        name: "quantityName",
+        placeholder: "Enter Quantity ",
+        type: "number",
+      },
+      {
+        label: "Price",
+        name: "price",
+        placeholder: "Enter Price ",
+        type: "number",
+      },
+      {
+        label: "Total",
+        name: "total",
+        placeholder: "",
+        type: "number",
       },
     ],
   },
