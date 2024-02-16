@@ -4,31 +4,55 @@ import { useForm } from "react-hook-form";
 import { INPUTS } from "./constant";
 import Button from "@/components/Button";
 import { convertFormData } from "@/utils/convertFormData";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { invoiceFormSchema } from "@/utils/validation";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function CreateForm() {
-  // ! create yup for form validation
-
+  const router = useRouter();
+  //  create yup for form validation (√)
   const {
     register,
     handleSubmit,
-    getValues,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(invoiceFormSchema) });
 
   // * go to api pages to create firebase add doc.
 
-  const onSubmit = (data) => {
-    const submitAction = data.submitAction;
+  const onSubmit = async (data) => {
+    const submitAction = await data.submitAction;
     const convertedData = convertFormData(data, submitAction);
-    console.log(convertedData);
+    const response = await fetch("/api/dataCreate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(convertedData),
+    });
+
+    if (response.ok) {
+      toast.success("Data created Successfully!");
+      setTimeout(() => {
+        reset();
+      }, 300);
+      router.push("/dashboard");
+    } else {
+      toast.error("encountered error while creating data.. ");
+    }
   };
 
-  const handleSaveAsDraft = () => {
-    onSubmit({ ...getValues(), submitAction: "saveAsDraft" });
+  const handleSaveAsDraft = async () => {
+    await handleSubmit((data) =>
+      onSubmit({ ...data, submitAction: "saveAsDraft" })
+    )();
   };
 
-  const handleSaveAndSend = () => {
-    onSubmit({ ...getValues(), submitAction: "saveAndSend" });
+  const handleSaveAndSend = async () => {
+    await handleSubmit((data) =>
+      onSubmit({ ...data, submitAction: "saveAndSend" })
+    )();
   };
 
   return (
@@ -57,6 +81,11 @@ function CreateForm() {
                   className="w-full h-12 rounded-md border border-[#F2F2F2] dark:text-white px-5 outline-none text-black font-bold text-[15px] -tracking-wide dark:bg-[#1E2139] dark:border-[#20233C] "
                   {...register(item.name)}
                 />
+                {errors[item.name] && (
+                  <span className="text-xs text-red font-normal">
+                    {errors[item.name]?.message}
+                  </span>
+                )}
               </div>
             ))}
           </div>
