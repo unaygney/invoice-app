@@ -34,13 +34,13 @@ export const INPUTS = [
       },
       {
         label: "Clients's Email",
-        name: "city",
+        name: "clientEmail",
         placeholder: "Enter city",
         type: "email",
       },
       {
         label: "Street Address",
-        name: "clientStreetAddress",
+        name: "street",
         placeholder: "Enter Client Street Address",
         type: "text",
       },
