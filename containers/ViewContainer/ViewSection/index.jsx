@@ -1,14 +1,8 @@
 "use client";
 import React from "react";
 import clsx from "clsx";
-import { getUserData } from "@/context/AuthContext";
-import EditForm from "./EditForm";
 function ViewSection({ data }) {
-  const { isEdit } = getUserData();
-
-  return isEdit ? (
-    <EditForm />
-  ) : (
+  return (
     <section className="flex flex-col gap-4 mt-8 overflow-y-scroll scroll-smooth no-scrollbar">
       <div className="w-full h-[91px] rounded-lg flex justify-between items-center bg-white dark:bg-[#1E2139] px-6">
         <h6 className="text text-[#858BB2]">Status</h6>
