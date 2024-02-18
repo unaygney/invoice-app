@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { getFirstLetter } from "@/utils/helper";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 export default function SideBar() {
   const REDIRECT_TIME = 750;
@@ -42,7 +43,10 @@ export default function SideBar() {
     <aside className="w-full h-[72px] bg-[#373b53] lg:w-[103px] lg:h-screen relative ">
       <ToastContainer />
       <div className="flex lg:flex-col w-full h-full justify-between ">
-        <div className="bg-purple flex items-center justify-center w-[72px] h-[72px] lg:h-[103px] lg:w-full rounded-r-[20px]  ">
+        <Link
+          href={"/dashboard"}
+          className="bg-purple flex items-center justify-center w-[72px] h-[72px] lg:h-[103px] lg:w-full rounded-r-[20px]  "
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-7 h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 "
@@ -56,7 +60,7 @@ export default function SideBar() {
               fill="white"
             />
           </svg>
-        </div>
+        </Link>
         {/* theme button and profile img */}
         <div className="flex lg:flex-col items-center">
           <div className="mr-6 flex items-center justify-center lg:mr-0 lg:mb-7">
