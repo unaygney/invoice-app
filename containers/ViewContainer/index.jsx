@@ -9,7 +9,7 @@ export default function ViewContainer({ params, data }) {
       <div className="max-w-[730px] w-full mx-auto">
         <NavigationBar />
         <ViewSection data={data} />
-        <ButtonContainer params={params} />
+        <ButtonContainer params={params} data={data} />
       </div>
     </main>
   );
