@@ -36,7 +36,7 @@ function CreateForm() {
       toast.success("Data created Successfully!");
       setTimeout(() => {
         reset();
-      }, 300);
+      }, 500);
       router.push("/dashboard");
     } else {
       toast.error("encountered error while creating data.. ");
