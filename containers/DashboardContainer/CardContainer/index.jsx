@@ -24,7 +24,7 @@ function CardContainer({ data }) {
 
   return (
     <section className="flex flex-col gap-4 mt-2">
-      {data.map((item, k) => (
+      {data?.map((item, k) => (
         <Card key={k} data={item} />
       ))}
     </section>
