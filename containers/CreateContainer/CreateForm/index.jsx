@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { INPUTS } from "./constant";
 import Button from "@/components/Button";
@@ -16,8 +16,13 @@ function CreateForm() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(invoiceFormSchema) });
+
+  const price = parseFloat(watch("price")) || 0;
+  const quantity = parseFloat(watch("quantityName")) || 0;
+  const totalValue = price * quantity;
 
   // * go to api pages to create firebase add doc.
 
@@ -78,6 +83,8 @@ function CreateForm() {
                   id={item.id}
                   type={item.type}
                   placeholder={item.placeholder}
+                  readOnly={item.name === "total"}
+                  defaultValue={item.name === "total" ? totalValue : ""}
                   className="w-full h-12 rounded-md border border-[#F2F2F2] dark:text-white px-5 outline-none text-black font-bold text-[15px] -tracking-wide dark:bg-[#1E2139] dark:border-[#20233C] "
                   {...register(item.name)}
                 />
@@ -92,7 +99,7 @@ function CreateForm() {
         </div>
       ))}
 
-      <div className="fixed bottom-0 left-0 right-0 h-[91px] bg-white dark:bg-[#1E2139]">
+      <div className="fixed bottom-0 left-0 right-0 h-[91px] bg-white dark:bg-[#1E2139] lg:left-[103px] ">
         <div className="w-full h-full flex items-center justify-center gap-2 px-6">
           <div className="w-full h-full flex items-center justify-center gap-2 px-6">
             <Button variant="dark-mini" title="Discard" type="button" />
