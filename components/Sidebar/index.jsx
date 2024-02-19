@@ -71,10 +71,11 @@ export default function SideBar() {
           <div className="flex items-center justify-center w-20 h-full border-l lg:border-t lg:border-l-0 border-[#494E6E] lg:w-full lg:h-20 ">
             <div className="w-8 h-8  rounded-full  relative">
               <Popconfirm
-                title="Delete the task"
+                title="Log out?"
                 description="Are you sure you want to log out?"
                 icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                 okText="Yes"
+                okType="danger"
                 cancelText="No"
                 onConfirm={confirm}
                 onCancel={cancel}
