@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import clsx from "clsx";
-function ViewSection({ data }) {
+import ButtonContainer from "../ButtonContainer";
+function ViewSection({ data, params }) {
   return (
-    <section className="flex flex-col gap-4 mt-8 overflow-y-scroll scroll-smooth no-scrollbar">
+    <section className="flex flex-col gap-4 mt-8 overflow-scroll scroll-smooth no-scrollbar">
       <div className="w-full h-[91px] rounded-lg flex justify-between items-center bg-white dark:bg-[#1E2139] px-6">
         <h6 className="text text-[#858BB2]">Status</h6>
         <div
@@ -45,6 +46,9 @@ function ViewSection({ data }) {
             {data.status}
           </p>
         </div>
+
+        {/* Buttons for desktop and tablet */}
+        <ButtonContainer data={data} />
       </div>
       {/* invoices info bar */}
       <div className="w-full  rounded-lg mb-20  bg-white dark:bg-[#1E2139] p-6  ">
