@@ -46,9 +46,6 @@ function ViewSection({ data, params }) {
             {data.status}
           </p>
         </div>
-
-        {/* Buttons for desktop and tablet */}
-        <ButtonContainer data={data} />
       </div>
       {/* invoices info bar */}
       <div className="w-full  rounded-lg mb-20  bg-white dark:bg-[#1E2139] p-6  ">
