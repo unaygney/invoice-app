@@ -3,10 +3,13 @@ import React from "react";
 import { Select } from "antd";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-function FilterContainer({ dataLength }) {
+import { getUserData } from "@/context/AuthContext";
+function FilterContainer({ data }) {
+  const { setUserData } = getUserData();
   const router = useRouter();
   const handleChange = (e) => {
-    console.log("degisti", e);
+    const filteredData = data.filter((element) => element.status === e);
+    setUserData(filteredData);
   };
 
   const handleNewClick = () => {
@@ -18,7 +21,7 @@ function FilterContainer({ dataLength }) {
         <div className="flex flex-col ">
           <h3 className="font-black ">Invoices</h3>
           <p className="text-xs text-[#888eb0]  font-bold">
-            {dataLength === 0 ? "No invoices" : `${dataLength} invoices`}
+            {data.length === 0 ? "No invoices" : `${data.length} invoices`}
           </p>
         </div>
 
@@ -31,7 +34,7 @@ function FilterContainer({ dataLength }) {
             options={[
               { value: "paid", label: "Paid" },
               { value: "pending", label: "Pending" },
-              { value: "draft", label: "Draft" },
+              { value: "all", label: "All " },
             ]}
           />
 
