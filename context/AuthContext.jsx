@@ -4,7 +4,7 @@ import { createContext, useContext, useState, useMemo } from "react";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [userData, setUserData] = useState(["teest"]);
+  const [userData, setUserData] = useState([]);
   const [isEdit, setEdit] = useState(false);
   const data = useMemo(
     () => ({
