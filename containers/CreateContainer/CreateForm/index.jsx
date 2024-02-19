@@ -10,23 +10,14 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function CreateForm() {
-  const [totalValue, setTotalValue] = useState(0);
   const router = useRouter();
   //  create yup for form validation (√)
   const {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(invoiceFormSchema) });
-
-  useEffect(() => {
-    const price = parseFloat(watch("price")) || 0;
-    const quantity = parseFloat(watch("quantityName")) || 0;
-    const total = price * quantity;
-    setTotalValue(total);
-  }, [watch()]);
 
   // * go to api pages to create firebase add doc.
 
@@ -64,8 +55,6 @@ function CreateForm() {
     )();
   };
 
-  console.log(totalValue);
-
   return (
     <form className="w-full h-full mb-20" onSubmit={handleSubmit(onSubmit)}>
       {INPUTS.map((field, index) => (
@@ -89,8 +78,6 @@ function CreateForm() {
                   id={item.id}
                   type={item.type}
                   placeholder={item.placeholder}
-                  readOnly={item.name === "total"}
-                  defaultValue={item.name === "total" ? totalValue : ""}
                   className="w-full h-12 rounded-md border border-[#F2F2F2] dark:text-white px-5 outline-none text-black font-bold text-[15px] -tracking-wide dark:bg-[#1E2139] dark:border-[#20233C]"
                   {...register(item.name)}
                 />
