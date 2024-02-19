@@ -33,10 +33,7 @@ export const invoiceFormSchema = yup.object({
   city: yup.string().required("City is required"),
   street: yup.string().required("Street is required"),
   postCode: yup.string().required("Post code is required"),
-  total: yup
-    .number()
-    .required("Total amount is required")
-    .positive("Total amount must be positive"),
+  total: yup.number().required("Total amount is required"),
   clientName: yup.string().required("Client name is required"),
   clientEmail: yup
     .string()
