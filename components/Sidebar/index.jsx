@@ -31,9 +31,7 @@ export default function SideBar() {
     }
   };
 
-  const cancel = (e) => {
-    console.log("clicked no!");
-  };
+  const cancel = (e) => {};
 
   const handleClick = () => {
     setTheme(!theme);
