@@ -1,8 +1,13 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { Modal, Space } from "antd";
+import { ExclamationCircleFilled } from "@ant-design/icons";
+
+const { confirm } = Modal;
+
 function ButtonContainer({ params, data }) {
   const router = useRouter();
   const REDIRECT_TIME = 1000;
@@ -10,20 +15,41 @@ function ButtonContainer({ params, data }) {
 
   // * To delete invoice
   const handleDelete = async () => {
-    const response = await fetch("/api/deleteData", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(params),
-    });
+    confirm({
+      title: "Confirm Deletion",
+      icon: <ExclamationCircleFilled />,
+      content: `Are you sure you want to delete invoice ${data.id} This action cannot be undone.`,
+      cancelText: "Cancel",
+      okText: "Delete",
+      okType: "danger",
+      onOk: async () => {
+        return new Promise(async (res, rej) => {
+          try {
+            const response = await fetch("/api/deleteData", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(params),
+            });
 
-    if (response.ok) {
-      toast.success("Deleted invoice successfully!");
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, REDIRECT_TIME);
-    } else {
-      toast.error("Encountered a error while deleting data!");
-    }
+            if (response.ok) {
+              res();
+              toast.success("Deleted invoice successfully!");
+              setTimeout(() => {
+                window.location.href = "/dashboard";
+              }, REDIRECT_TIME);
+            } else {
+              rej();
+              toast.error("Encountered a error while deleting data!");
+            }
+          } catch (error) {
+            console.error(error);
+            rej(error);
+          }
+        });
+      },
+
+      onCancel() {},
+    });
   };
 
   // * To Handle Update status 'Paid'
@@ -37,7 +63,7 @@ function ButtonContainer({ params, data }) {
     if (response.ok) {
       toast.success("Invoice status changed successfully.");
       setTimeout(() => {
-        router.push("/dashboard");
+        window.location.href = "/dashboard";
       }, REDIRECT_TIME);
     } else {
       toast.error("Encounted a error while update invoice status.");
@@ -45,12 +71,18 @@ function ButtonContainer({ params, data }) {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-[91px] bg-white dark:bg-[#1E2139]">
+    <div className="fixed bottom-0 left-0 right-0 h-[91px]  bg-white dark:bg-[#1E2139] lg:left-[103px] ">
       <div className="w-full h-full flex items-center justify-center gap-2 px-6">
         <div className="w-full h-full flex items-center justify-center gap-2 px-6">
           {status !== "paid" ? (
             <>
-              <Button variant="danger" title="Delete" onClick={handleDelete} />
+              <Space wrap>
+                <Button
+                  variant="danger"
+                  title="Delete"
+                  onClick={handleDelete}
+                />
+              </Space>
               <Button
                 variant="secondary"
                 title="Mark as Paid"
