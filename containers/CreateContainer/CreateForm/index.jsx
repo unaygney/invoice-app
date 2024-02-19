@@ -64,6 +64,8 @@ function CreateForm() {
     )();
   };
 
+  console.log(totalValue);
+
   return (
     <form className="w-full h-full mb-20" onSubmit={handleSubmit(onSubmit)}>
       {INPUTS.map((field, index) => (
