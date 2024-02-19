@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { INPUTS } from "./constant";
 import Button from "@/components/Button";
@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function CreateForm() {
+  const [totalValue, setTotalValue] = useState(0);
   const router = useRouter();
   //  create yup for form validation (√)
   const {
@@ -20,9 +21,12 @@ function CreateForm() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(invoiceFormSchema) });
 
-  const price = parseFloat(watch("price")) || 0;
-  const quantity = parseFloat(watch("quantityName")) || 0;
-  const totalValue = price * quantity;
+  useEffect(() => {
+    const price = parseFloat(watch("price")) || 0;
+    const quantity = parseFloat(watch("quantityName")) || 0;
+    const total = price * quantity;
+    setTotalValue(total);
+  }, [watch()]);
 
   // * go to api pages to create firebase add doc.
 
@@ -85,7 +89,7 @@ function CreateForm() {
                   placeholder={item.placeholder}
                   readOnly={item.name === "total"}
                   defaultValue={item.name === "total" ? totalValue : ""}
-                  className="w-full h-12 rounded-md border border-[#F2F2F2] dark:text-white px-5 outline-none text-black font-bold text-[15px] -tracking-wide dark:bg-[#1E2139] dark:border-[#20233C] "
+                  className="w-full h-12 rounded-md border border-[#F2F2F2] dark:text-white px-5 outline-none text-black font-bold text-[15px] -tracking-wide dark:bg-[#1E2139] dark:border-[#20233C]"
                   {...register(item.name)}
                 />
                 {errors[item.name] && (
